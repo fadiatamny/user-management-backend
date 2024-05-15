@@ -14,7 +14,7 @@ export class GroupsService {
         const group = await this.collection.findOne({ _id: groupId })
 
         if (!group) {
-            throw new APIError('User not found in group', 404)
+            throw new APIError('Group not found', 404)
         }
 
         const updatedMembers = group.members.filter(

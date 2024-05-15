@@ -1,7 +1,6 @@
 import { Collection } from 'mongodb'
-import { QueryPayload } from '../models'
+import { QueryPayload, User, UserPatchPayload } from '../models'
 import { Mongo } from '../shared'
-import { User, UserPatchPayload } from '../models/user.model'
 
 export class UsersService {
     public get collection(): Collection<User> {

@@ -82,7 +82,7 @@
 	"paths": {
 		"/users": {
 			"get": {
-				"operationId": "List",
+				"operationId": "List Users",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -126,7 +126,7 @@
 				]
 			},
 			"patch": {
-				"operationId": "Update",
+				"operationId": "Update Users",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -161,7 +161,7 @@
 		},
 		"/users/query": {
 			"post": {
-				"operationId": "Query",
+				"operationId": "Query Users",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -192,6 +192,38 @@
 						}
 					}
 				}
+			}
+		},
+		"/users/{id}/group/{groupId}": {
+			"delete": {
+				"operationId": "Remove User from Group",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "groupId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/hello": {
