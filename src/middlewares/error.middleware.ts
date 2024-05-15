@@ -1,5 +1,6 @@
 import { Response, Request, NextFunction } from 'express'
 import { ValidateError } from 'tsoa'
+import { APIError } from '../models'
 
 export class ErrorHandler {
     private _isValidationError(error: any): error is ValidateError {
@@ -10,6 +11,11 @@ export class ErrorHandler {
                 error.fields)
         )
     }
+
+    private _isAPIError = (error: any): error is APIError => {
+        return error instanceof APIError || (error.name === 'APIError' && error.statusCode)
+    }
+
     private _isError(error: any): error is Error {
         return (error as Error).message !== undefined
     }
@@ -40,6 +46,17 @@ export class ErrorHandler {
             return res.status(err.status).json({
                 message: err.message,
                 details: err?.fields
+            })
+        }
+
+        if (this._isAPIError(err)) {
+            this._logErrors(req, err.message, {
+                APIError: true,
+                details: err.metadata
+            })
+            return res.status(err.statusCode).json({
+                message: err.message,
+                details: err.metadata
             })
         }
 

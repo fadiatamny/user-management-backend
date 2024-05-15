@@ -1,21 +1,25 @@
 import dotenv from 'dotenv'
-import express, { Express, Request, Response } from 'express'
+import express, { Express } from 'express'
 import { config } from './config'
 import { Mongo } from './shared/Mongo'
 import { RegisterRoutes } from './routes'
 import bodyParser from 'body-parser'
+import { errorMiddleware, unknownMiddleware } from './middlewares'
 
 dotenv.config()
 
 async function main() {
     const app: Express = express()
 
-    try {
-        app.use(bodyParser.urlencoded({ extended: true }))
-        app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(bodyParser.json())
 
+    try {
         await Mongo.connect(config.MONGO.uri)
         RegisterRoutes(app)
+
+        app.use(errorMiddleware)
+        app.use(unknownMiddleware)
 
         app.listen(config.PORT, () => {
             console.log(`Server running on port ${config.PORT}`)
