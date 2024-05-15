@@ -23,11 +23,16 @@ export class UsersService {
         limit = limit ?? 1000
         page = page ?? 0
 
+        const filter: { [key: string]: any } = {}
+        if (email) {
+            filter.email = email
+        }
+        if (name) {
+            filter.name = name
+        }
+
         const users = await this.collection
-            .find({
-                email,
-                name
-            })
+            .find(filter)
             .skip(page * limit)
             .limit(limit)
 

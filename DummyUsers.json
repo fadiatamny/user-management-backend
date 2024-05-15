@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "6644b82c9419c4d8ab496194",
+        "name": "John Doe",
+        "email": "john@doe.com",
+        "status": "active"
+    },
+    {
+        "_id": "6644b8347dee3899d71393dc",
+        "name": "Jane Doe",
+        "email": "jane@doe.com",
+        "status": "pending"
+    },
+    {
+        "_id": "6644b838ccc51e4aba44f65b",
+        "name": "Jim Doe",
+        "email": "jim@doe.com",
+        "status": "blocked"
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+        "_id": "6644bbccf1e957bb3940af7e",
+        "name": "Test1",
+        "description": "something",
+        "status": "notEmpty",
+        "members": ["6644b8347dee3899d71393dc", "6644b82c9419c4d8ab496194"]
+    },
+    {
+        "_id": "6644bbc9356334abd934d771",
+        "name": "Test2",
+        "description": "something2",
+        "status": "notEmpty",
+        "members": ["6644b838ccc51e4aba44f65b"]
+    },
+    {
+        "_id": "6644bc2658fac3113f9b43a5",
+        "name": "Test3",
+        "description": "something3",
+        "status": "empty",
+        "members": []
+    }
+]
